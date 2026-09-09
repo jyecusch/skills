@@ -7,6 +7,8 @@ description: Ruthlessly review code, a diff, a PR, or a codebase for unnecessary
 
 Review whatever code you're pointed at. Report only violations. No praise, no restating what the code does. If asked to fix rather than review, apply the fixes.
 
+Report every finding regardless of how expensive its fix is: a rename rippling through fifty call sites is still a finding — state it with its blast radius and let the human set the churn budget. Never trade a finding away against "minimal code" silently; goal 1 constrains the code you write, not the problems you report. A scoped request ("review the comments this branch adds") narrows what you *fix*, not what you may *flag*.
+
 Each finding: location — problem — concrete fix — principle violated. For example:
 
 > `src/auth.ts:42` — `buildAuthContext(data)` accepts arbitrary data and is only safe if `verifySession()` was called first (temporal coupling). Fix: merge into `authContextFromToken(token)` that verifies internally, and stop exporting `AuthContext` so that's the only way to get one. *(misuse-resistance)*
