@@ -20,7 +20,7 @@ Interfaces must be easy to use correctly and hard to use incorrectly (Scott Meye
   ```
   Fix by fusing the sequence (`contextFromToken(token)` verifies internally) or by making the later step require unforgeable proof of the earlier one (it accepts only the type that step 1 returns, and nothing else can produce that type).
 
-- **Validation separated from construction**: "parse, don't validate" (Alexis King). Don't check a string is a valid email and keep passing the string — parse it once into an `EmailAddress` type whose only constructor does the check, then require `EmailAddress` downstream. Possession of the value *is* proof of validity; unvalidated data becomes unrepresentable ("make illegal states unrepresentable").
+- **Validation separated from construction**: "parse, don't validate" (Alexis King). Don't check a string is a valid email and keep passing the string — parse it once into an `EmailAddress` type whose only constructor does the check, then require `EmailAddress` downstream. Possession of the value *is* proof of validity; unvalidated data becomes unrepresentable ("make illegal states unrepresentable"). Full treatment — branded domain types, deriving types from constants, correlated fields — in `type-driven-design`.
 
 - **Mode flags and conditionally-required parameters**: `send(kind, ..., smtpHost?, twilioToken?)` where a comment explains which optionals go with which `kind`. The contract lives in prose, so forgetting a value fails at runtime. Split into one type per mode, each constructor requiring exactly its own inputs — forgetting one becomes a compile/startup error.
 
