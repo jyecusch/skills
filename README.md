@@ -26,11 +26,6 @@ npx skills@latest add jyecusch/skills --skill code-critique
 | --- | --- |
 | [code-review](./skills/code-review/) | Opinionated code review and refactoring skills — naming, nesting, abstraction, state, API design, and an orchestrating critique skill. |
 
-## Repo layout
-
-- `skills/<category>/<skill-name>/SKILL.md` — one skill per directory.
-- `verification/` — prompts and fixture code for testing that the skills actually catch what they claim to.
-
 ## License
 
 MIT
