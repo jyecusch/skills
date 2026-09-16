@@ -24,7 +24,7 @@ npx skills@latest add jyecusch/skills --skill code-critique
 
 | Category | Description |
 | --- | --- |
-| [code-review](./skills/code-review/) | Opinionated code review and refactoring skills — naming, nesting, abstraction, state, API design, and an orchestrating critique skill. |
+| [code-review](./skills/code-review/) | Opinionated code review and refactoring skills — naming, nesting, abstraction, state, types, testing, API design, and an orchestrating critique skill. |
 
 ## License
 

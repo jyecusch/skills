@@ -14,6 +14,9 @@ Skills for reviewing (and writing) code with a focus on reviewability: could a d
 | [naming](./naming/SKILL.md) | Identifier names as contracts — abbreviated, vague, or misleading names. |
 | [self-documenting-code](./self-documenting-code/SKILL.md) | Replacing explanatory comments and magic numbers with self-explanatory code. |
 | [state-and-pipelines](./state-and-pipelines/SKILL.md) | Mutable state, shared flags, and loops that should be pure transformation pipelines. |
+| [testing](./testing/SKILL.md) | High-value behavioral tests, faithful boundaries, and restrained use of test doubles. |
+| [type-driven-design](./type-driven-design/SKILL.md) | Types that carry domain proof without redundant implementation annotations. |
 | [un-nesting](./un-nesting/SKILL.md) | Flattening deeply nested code with guard clauses and early returns. |
+| [writing-comments](./writing-comments/SKILL.md) | Comments and documentation that preserve non-obvious rationale and context. |
 
 Test material for these skills lives in [`verification/`](../../verification/) at the repo root.

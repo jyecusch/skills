@@ -7,7 +7,7 @@ description: Flatten deeply nested code. Use in any review or refactor when func
 
 Each nesting level is another condition the reader must hold in working memory at once — and in a diff, the governing conditions usually sit off-screen above the change, so the reviewer can't even see what must be true for the changed line to run. Treat depth beyond 3 as a defect (the Linux kernel style guide's rule).
 
-Two moves:
+Apply these moves in order:
 
 - **Inversion**: flip conditions into guard clauses with early returns.
   ```ts
@@ -20,6 +20,6 @@ Two moves:
   ```
   Error and edge cases exit immediately; validation collects at the top as a declared precondition gate; the happy path runs straight down the left margin. Once a guard has returned, the reader *permanently discards* that condition instead of carrying it to the closing brace.
 
-- **Extraction**: pull inner blocks — loop bodies, switch arms, distinct phases — into their own well-named functions, so the parent reads as a flat sequence of steps (`processIncoming(); processDownloads(); waitForWork();`). Prefer extracting *pure* functions (explicit inputs and outputs, no shared mutable state): they can be verified and tested in isolation, without knowing the caller's context.
+- **Extraction, after guards**: keep straightforward logic together. Extract only when the remaining function still contains distinct, non-trivial phases or an independently meaningful domain operation or boundary. The parent should become a coherent sequence of happy-path steps (`processIncoming(); processDownloads(); waitForWork();`), and each trustworthy name should make opening the helper optional. If caller-relevant behavior is surprising from the name, rename it or keep the logic inline. Do not extract merely to reduce indentation, line count, or enable isolated testing. Prefer explicit inputs and outputs when extraction is warranted.
 
 Done right, no function requires tracking more than a couple of conditions simultaneously, and digging into any step is optional rather than mandatory.

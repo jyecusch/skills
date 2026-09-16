@@ -11,10 +11,10 @@ Worked example: `EmailNotifier` and `SmsNotifier` both store a `recipient` strin
 
 Flag abstractions whose coupling outweighs their value:
 
-- Shared parents/helpers extracted to save trivial code — a couple of assignments, one duplicated call. Deduplicating *logic* can be worth coupling; deduplicating *syntax* almost never is.
-- Interfaces or base classes with a single implementation and no seam need — nothing selects an implementation at runtime, and no test swaps in a fake.
+- Shared parents/helpers extracted only to save trivial code — a couple of assignments, one duplicated call. Deduplicating *logic* can be worth coupling; deduplicating *syntax* almost never is. A short helper is different when it names an independently meaningful domain operation or boundary and its trustworthy name makes navigation unnecessary.
+- Interfaces or base classes with a single implementation and no capability, ownership, lifecycle, configuration, or production variation boundary. A test double alone does not justify a new abstraction; tests should normally implement an existing boundary.
 - DRYing *coincidental* duplication: code that looks alike today but answers to different owners — e.g. `adminDiscount` and `loyaltyDiscount` both happen to be `price * 0.9` this quarter. Merge them and the first divergent requirement forces an awkward un-merge.
 
-An abstraction earns its keep when it **separates deciding from doing** — the choice of implementation moves away from the point of use (factories, polymorphic call sites, a scheduler that retries "a task" without knowing which) — or when three-plus genuinely interchangeable variants exist.
+An abstraction can earn its keep when it names an independently meaningful domain operation, protects an invariant or complex boundary, **separates deciding from doing** (factories, polymorphic call sites, a scheduler that retries "a task" without knowing which), or unifies genuinely interchangeable variants. A stable infrastructure capability can earn a boundary with one live implementation when it isolates configuration or resource lifetime. In Effect code, a `Context.Service` shape and alternate layers already provide that boundary; do not add a parallel interface or wrapper.
 
 Verdict per abstraction: name the coupling it introduces, name the value it delivers, and recommend inlining it if the ledger is negative.

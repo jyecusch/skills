@@ -15,11 +15,11 @@ Each finding: location — problem — concrete fix — principle violated. For 
 
 Judge against four goals:
 
-1. **Minimal code.** Flag anything not needed for the actual job: boilerplate, speculative generality, layers that only forward calls, dead configuration. Extra code is justified only when it serves goals 2–4.
+1. **Minimal code.** Flag anything not needed for the actual job: boilerplate, speculative generality, layers that only forward calls, dead configuration. Extra code is justified only when it serves goals 2–4. Raw counts of variables, helpers, or lines are not goals; a named local or domain operation can reduce cognitive load even when it adds a declaration.
 2. **Essential complexity only.** Essential complexity is inherent to the problem; accidental complexity comes from our tools and choices (Brooks). Flag the accidental kind. Structure, names, and types should minimize the cognitive load of whatever essential complexity remains.
 3. **Misuse resistance.** Interfaces must be easy to use correctly and hard to use incorrectly. Apply the `misuse-resistance` skill.
 4. **Reviewability (local reasoning).** Humans review diffs (GitHub PR UI) seeing only a few lines of context, and they verify code against what names and types *claim* — under time pressure, nobody opens distant definitions. Anything whose correctness can't be verified from the visible lines alone — misleading names, invisible preconditions, action at a distance, nesting whose governing conditions sit above the fold, comments whose referents live outside the file — will slip mistakes past human review.
 
-Where the code touches their domains, also apply: `naming`, `un-nesting`, `self-documenting-code`, `writing-comments`, `type-driven-design`, `abstraction-and-coupling`, `composition-over-inheritance`, `dependency-injection`, `state-and-pipelines`. When *writing or amending* code (not just reviewing), `writing-comments` and `naming` govern every comment and identifier you produce, and `type-driven-design` governs every type and signature.
+Where the code touches their domains, also apply: `naming`, `un-nesting`, `self-documenting-code`, `writing-comments`, `type-driven-design`, `abstraction-and-coupling`, `composition-over-inheritance`, `dependency-injection`, `state-and-pipelines`, `testing`. When *writing or amending* code (not just reviewing), `writing-comments` and `naming` govern every comment and identifier you produce, `type-driven-design` governs every type and signature, and `testing` governs whether and how tests are added.
 
 For every public API, ask: what's the worst mistake a competent but rushed developer could plausibly make here? If the design permits the mistake, flag it — "the docs say not to" is not a defense.
